@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-ink font-sans antialiased;
+    letter-spacing: 0.005em;
+    /* soft toned-down mint gingham on cream */
+    background-color: #F7F4EE;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 21px,
+        rgba(139, 154, 135, 0.05) 21px,
+        rgba(139, 154, 135, 0.05) 42px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 21px,
+        rgba(139, 154, 135, 0.05) 21px,
+        rgba(139, 154, 135, 0.05) 42px
+      );
+  }
+  ::selection {
+    @apply bg-clay/20;
+  }
+}
+
+@layer utilities {
+  /* scroll reveal — elements rise and fade in as they enter the viewport */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: none;
+    }
+    /* hero entrance on load */
+    .rise-in {
+      opacity: 0;
+      animation: riseIn 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    }
+  }
+  @keyframes riseIn {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer utilities {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  /* refined uppercase label */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase text-muted;
+    letter-spacing: 0.22em;
+  }
+  .display-italic {
+    font-style: italic;
+    font-weight: 400;
+  }
+  /* scalloped bottom edge (eyelet-lace feel) */
+  .scallop-b {
+    --sc: 12px; /* scallop radius */
+    -webkit-mask:
+      radial-gradient(var(--sc) at var(--sc) 0, transparent 98%, #000) 0 100% /
+        calc(var(--sc) * 2) var(--sc) repeat-x,
+      linear-gradient(#000, #000) 0 0 / 100% calc(100% - var(--sc) + 1px) no-repeat;
+    mask:
+      radial-gradient(var(--sc) at var(--sc) 0, transparent 98%, #000) 0 100% /
+        calc(var(--sc) * 2) var(--sc) repeat-x,
+      linear-gradient(#000, #000) 0 0 / 100% calc(100% - var(--sc) + 1px) no-repeat;
+  }
+  .scallop-shadow {
+    filter: drop-shadow(0 2px 1px rgba(34, 31, 27, 0.06));
+  }
+}
