@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { categories, products } from '../data/products'
 import ProductCard from '../components/ProductCard'
 import Reveal from '../components/Reveal'
+import { asset } from '../lib/asset'
 
 function Hero() {
   return (
@@ -47,7 +48,7 @@ function Hero() {
           style={{ animationDelay: '0.2s' }}
         >
           <img
-            src="/products/hero-nursery.jpg"
+            src={asset('/products/hero-nursery.jpg')}
             alt="A parent arranging baby clothes and wooden toys in a nursery"
             className="absolute inset-0 h-full w-full object-cover"
             loading="eager"
@@ -86,7 +87,7 @@ function EditorialBand() {
     <section className="container-x mt-24">
       <Reveal className="relative overflow-hidden rounded-[2.25rem]">
         <img
-          src="/products/lifestyle-hands.jpg"
+          src={asset('/products/lifestyle-hands.jpg')}
           alt="Two toddlers in red overalls holding hands outdoors"
           className="h-[26rem] w-full object-cover sm:h-[32rem]"
           loading="lazy"

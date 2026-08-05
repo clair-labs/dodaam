@@ -1,4 +1,5 @@
 import { categories } from '../data/products'
+import { asset } from '../lib/asset'
 
 // Uses a real product photo when `product.image` is set; otherwise falls back to
 // a refined tonal placeholder in the brand palette (cohesive without image assets).
@@ -9,7 +10,7 @@ export default function ProductImage({ product, className = '', rounded = 'round
     return (
       <div className={`overflow-hidden ${rounded} ${className}`}>
         <img
-          src={product.image}
+          src={asset(product.image)}
           alt={product.name}
           className="h-full w-full object-cover"
           loading="lazy"
