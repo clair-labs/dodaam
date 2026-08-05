@@ -24,7 +24,9 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
+      # npm install (not ci): the lock file is generated on macOS and omits
+      # some Linux-only optional native deps, which `npm ci` rejects.
+      - run: npm install --no-audit --no-fund
       - run: npm run build
       # SPA deep-link fallback: serve the app for unknown paths (e.g. /dodaam/shop
       # on hard refresh) so react-router can resolve them client-side.
